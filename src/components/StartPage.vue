@@ -2,13 +2,21 @@
   <div class="container">
     <h1 class="display-3 header">My Spotify Experience</h1>
 
-    <button type="button" class="btn btn-outline-primary btn-lg explore-button" > Explore </button>
+    <button type="button" class="btn btn-outline-primary btn-lg explore-button" @click="onExploreClick"> Explore </button>
   </div>
 </template>
 
 <script>
+import SpotifyAuth from "../services/SpotifyAuth";
+
 export default {
-  name: "StartPage"
+  name: "StartPage",
+
+  methods: {
+    onExploreClick() {
+      SpotifyAuth.redirectToOauthPortal();
+    }
+  }
 };
 </script>
 

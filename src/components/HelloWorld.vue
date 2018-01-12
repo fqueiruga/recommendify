@@ -23,10 +23,15 @@
 <script>
 export default {
   name: "HelloWorld",
+
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
     };
+  },
+
+  beforeRouteEnter(to, from, next) {
+    console.log("beforerouteenter", to, from, next);
   }
 };
 </script>
