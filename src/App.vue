@@ -15,7 +15,7 @@ export default {
 @import "./styles/_vars.scss";
 @import "~bootstrap/scss/bootstrap";
 
-#app {
+html {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 </style>
