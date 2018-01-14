@@ -1,30 +1,48 @@
 <template>
   <div class="wrapper">
-    <div src="/static/start-background-min.jpeg" class="background-img"/>
+    <alert-message v-if="hasAuthError"
+                   message="Error signing in with your Spotify account."></alert-message>
+
+    <div src="/static/start-background-min.jpeg"
+         class="background-img" />
 
     <div class="items-wrapper">
       <h1 class="display-3 header">My Spotify Experience</h1>
-      <button type="button" class="btn btn-outline-light btn-lg explore-button" @click="onExploreClick"> Explore </button>
+      <button type="button"
+              class="btn btn-outline-light btn-lg explore-button"
+              @click="onExploreClick"> Explore </button>
     </div>
   </div>
 </template>
 
 <script>
-import SpotifyAuth from "../services/SpotifyAuth";
+import AlertMessage from "@/components/alert-message";
+import SpotifyAuth from "@/services/spotify-auth";
 
 export default {
   name: "StartPage",
 
+  components: {
+    AlertMessage
+  },
+
   methods: {
     onExploreClick() {
       SpotifyAuth.redirectToOauthPortal();
+    }
+  },
+
+  computed: {
+    hasAuthError() {
+      const query = this.$route.query;
+      return query.error && decodeURIComponent(query.error) === "access_denied";
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-@import "../styles/vars";
+@import "../../styles/vars";
 
 .wrapper {
   height: 100vh;
@@ -50,7 +68,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 1000;
   margin: auto;
   height: 100vh;
   display: flex;
@@ -67,6 +85,15 @@ export default {
 .explore-button {
   display: inline-block;
   min-width: 200;
+}
+
+.alert-wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  z-index: 9999;
 }
 </style>
 

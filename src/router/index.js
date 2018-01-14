@@ -1,23 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
-// import HelloWorld from "@/components/HelloWorld";
-import AuthCallback from "@/components/AuthCallback";
-import StartPage from "@/components/StartPage";
+
+import { Routes } from "./routes";
+import { RoutePaths } from "./route-paths";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
-  routes: [
-    {
-      path: "/",
-      name: "Start Page",
-      component: StartPage
-    },
-    {
-      path: "/callback",
-      name: "Hello World",
-      component: AuthCallback
-    }
-  ]
+  routes: Routes
 });
+
+export { router, RoutePaths };

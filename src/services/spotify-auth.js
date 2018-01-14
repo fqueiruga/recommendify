@@ -15,6 +15,7 @@ function getLoginUrl(state, scopes) {
       &scope=${encodeURIComponent(scopes.join(" "))}
       &redirect_uri=${encodeURIComponent(REDIRECT_URI)}
       &state=${encodeURIComponent(state)}
+      &show_dialog=${encodeURIComponent(true)}
   `;
   return url.replace(/\s/g, "");
 }
