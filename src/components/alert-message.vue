@@ -13,26 +13,28 @@
 </template>
 
 <script>
-export default {
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component({
   props: {
     message: {
       type: String,
       default: ""
     }
-  },
-
+  }
+})
+export default class AlertMessage extends Vue {
   data() {
     return {
       visible: true
     };
-  },
-
-  methods: {
-    close() {
-      this.visible = false;
-    }
   }
-};
+
+  close() {
+    this.visible = false;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -16,29 +16,27 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Component from "vue-class-component";
+
 import AlertMessage from "@/components/alert-message";
 import SpotifyAuth from "@/services/spotify-auth";
 
-export default {
-  name: "StartPage",
-
+@Component({
   components: {
     AlertMessage
-  },
-
-  methods: {
-    onExploreClick() {
-      SpotifyAuth.redirectToOauthPortal();
-    }
-  },
-
-  computed: {
-    hasAuthError() {
-      const query = this.$route.query;
-      return query.error && decodeURIComponent(query.error) === "access_denied";
-    }
   }
-};
+})
+export default class StartPage extends Vue {
+  get hasAuthError() {
+    const query = this.$route.query;
+    return query.error && decodeURIComponent(query.error) === "access_denied";
+  }
+
+  onExploreClick() {
+    SpotifyAuth.redirectToOauthPortal();
+  }
+}
 </script>
 
 <style scoped lang="scss">
