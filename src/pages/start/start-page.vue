@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <alert-message v-if="hasAuthError"
-                   message="Error signing in with your Spotify account."></alert-message>
+    <alert-message v-if="errorMessage"
+                   :message="errorMessage"></alert-message>
 
     <div src="/static/start-background-min.jpeg"
          class="background-img" />
 
     <div class="items-wrapper">
-      <h1 class="display-3 header">My Spotify Experience</h1>
+      <h1 class="header">Recommendify</h1>
       <button type="button"
               class="btn btn-outline-light btn-lg explore-button"
               @click="onExploreClick"> Explore </button>
@@ -28,9 +28,18 @@ import SpotifyAuth from "@/services/spotify-auth";
   }
 })
 export default class StartPage extends Vue {
-  get hasAuthError() {
-    const query = this.$route.query;
-    return query.error && decodeURIComponent(query.error) === "access_denied";
+  get errorMessage() {
+    const { error } = this.$route.query;
+    switch (decodeURIComponent(error)) {
+      case "access_denied":
+        return "Error signing in with your Spotify account.";
+      case "not_authenticated":
+        return "You must sign in with your Spotify account to continue.";
+      case "session_expired":
+        return "Your session has expired. Sign in with your Spotify account to continue.";
+      default:
+        return null;
+    }
   }
 
   onExploreClick() {
@@ -43,7 +52,6 @@ export default class StartPage extends Vue {
 @import "../../styles/vars";
 
 .wrapper {
-  height: 100vh;
 }
 
 .background-img {
@@ -76,6 +84,9 @@ export default class StartPage extends Vue {
 }
 
 .header {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  padding: 2rem;
   margin-bottom: 60px;
   color: $gray-100;
 }
@@ -91,7 +102,6 @@ export default class StartPage extends Vue {
   left: 0px;
   right: 0px;
   width: 100%;
-  z-index: 9999;
+  z-index: $z-index-alert;
 }
 </style>
-

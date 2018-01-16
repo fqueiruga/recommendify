@@ -1,3 +1,5 @@
+import keys from "lodash/keys";
+
 /**
  * Obtains parameters from the hash of the URL
  * {@link Taken from https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/public/index.html}
@@ -13,4 +15,18 @@ export function getHashParams() {
     hashParams[e[1]] = decodeURIComponent(e[2]);
   }
   return hashParams;
+}
+
+/**
+ * Builds a query string from map of params
+ *
+ * @param {Object} obj
+ * @return String
+ */
+export function toQueryString(obj) {
+  return keys(obj)
+    .map(key => {
+      return [encodeURIComponent(key), encodeURIComponent(obj[key])].join("=");
+    })
+    .join("&");
 }

@@ -1,5 +1,6 @@
 const RoutePaths = {
-  HOME: "/",
+  Home: "/",
+  Explore: "/explore",
   OAuthCallback: "/callback"
 };
 

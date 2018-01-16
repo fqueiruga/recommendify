@@ -1,6 +1,17 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+$z-index-alert: 9010;
+$z-index-modal-main-button: 9005;
+$z-index-modal-header: 8005;
+$z-index-modal: 8000;
+
+$primary: #16c79e;
+$accent: #fea91c;
+$secondary: $accent;
+$light-gray: #f9fbfb;
+$dark-gray: #003f31;
+
 /**
  * App themes and Bootstrap overrides
  */
@@ -67,14 +78,14 @@ $colors: map-merge(
   $colors
 );
 
-$primary: $blue !default;
-$secondary: $gray-600 !default;
+// $primary: $blue !default;
+// $secondary: $gray-600 !default;
 $success: $green !default;
-$info: $cyan !default;
+$info: $accent !default;
 $warning: $yellow !default;
 $danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-800 !default;
+$light: $light-gray !default;
+$dark: $dark-gray !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge(
@@ -83,7 +94,7 @@ $theme-colors: map-merge(
     "primary": $primary,
     "secondary": $secondary,
     "success": $success,
-    "info": $info,
+    "info": $accent,
     "warning": $warning,
     "danger": $danger,
     "light": $light,

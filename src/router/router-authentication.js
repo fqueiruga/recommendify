@@ -1,11 +1,6 @@
 import { getHashParams } from "@/utils/URLUtils";
-import SpotifyAuth from "@/services/spotify-auth";
+import store from "@/store";
 import { RoutePaths } from "./route-paths";
-
-const oAuthSuccess = {
-  path: RoutePaths.HOME,
-  query: { login: "success" }
-};
 
 /**
  * Manages OAuth2 implicit grant callbacks
@@ -16,12 +11,12 @@ export function oAuthCallback(to) {
 
   if (query.error || !hashParams.access_token) {
     const error = to.query.error || true;
-    return {
-      path: RoutePaths.HOME,
-      error
-    };
+    return { path: RoutePaths.Home, error };
   }
 
-  SpotifyAuth.setAccessToken(hashParams.access_token, hashParams.expires_in);
-  return oAuthSuccess;
+  store.dispatch("setToken", {
+    token: hashParams.access_token,
+    expiresAt: Date.now() + hashParams.expires_in * 1000
+  });
+  return { path: RoutePaths.Explore, hash: "" };
 }

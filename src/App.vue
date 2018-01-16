@@ -6,10 +6,17 @@
 
 <script>
 import Vue from "vue";
+import { mapActions } from "vuex";
 import Component from "vue-class-component";
 
-@Component
-export default class App extends Vue {}
+@Component({
+  methods: { ...mapActions(["loadTokenFromStorage"]) }
+})
+export default class App extends Vue {
+  created() {
+    this.loadTokenFromStorage();
+  }
+}
 </script>
 
 <style lang="scss">
@@ -18,6 +25,28 @@ export default class App extends Vue {}
 @import "~bootstrap/scss/bootstrap";
 
 html {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  height: 100vh;
+}
+
+body {
+  min-height: 100%;
+  margin: 0px;
+  display: flex;
+}
+
+#app {
+  flex: 1;
+}
+
+/* OVERRIDES */
+.btn-secondary {
+  color: $white;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white !important;
+  }
 }
 </style>

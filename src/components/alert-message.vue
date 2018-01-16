@@ -38,7 +38,9 @@ export default class AlertMessage extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/vars";
+
 .custom-alert {
-  z-index: 9999;
+  z-index: $z-index-alert;
 }
 </style>
