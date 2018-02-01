@@ -1,27 +1,21 @@
-# spotify-user-data
+# Recommendify
 
-> Tool to let Spotify users explore their preferences
+Tool to let Spotify users get music recommendations. (**NOTE:** a Spotify account is needed).
+
+The app generates playlists for users from a selection of artists and songs.
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
-npm install
+yarn install
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn start
 
 # build for production with minification
-npm run build
+yarn build
 
 # build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+yarn build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
